@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  void f() {}
   const HomePage({Key? key}) : super(key: key);
 
   @override
