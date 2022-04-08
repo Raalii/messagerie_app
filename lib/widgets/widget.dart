@@ -6,6 +6,12 @@ PreferredSizeWidget? appBarMain(BuildContext context) {
   );
 }
 
+PreferredSizeWidget? appBarMainConnected(BuildContext context) {
+  return AppBar(
+    title: const Text("Mes messages"),
+  );
+}
+
 InputDecoration textFieldInputDecoration(String hintText) {
   return InputDecoration(
     hintText: hintText,

@@ -8,6 +8,17 @@ class ForgotPassword extends StatefulWidget {
 class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("mot de pase oublié"),
+      ),
+      body: Center(
+        child: Text(
+          "Mot de passe sera jamais récupéré !",
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+      ),
+      // floatingActionButton: ,
+    );
   }
 }

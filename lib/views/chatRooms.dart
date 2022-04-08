@@ -9,6 +9,12 @@ import 'package:messagerie_app/views/chat.dart';
 import 'package:messagerie_app/views/search.dart';
 import 'package:flutter/material.dart';
 
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+  }
+}
+
 class ChatRoom extends StatefulWidget {
   @override
   _ChatRoomState createState() => _ChatRoomState();
@@ -59,10 +65,49 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
-        title: const Text("HelLo"),
+        title: const Text("Mes messages"),
         elevation: 0.0,
         centerTitle: false,
+        // leading: IconButton(
+        //   onPressed: () {},
+        //   icon: const Icon(
+        //     Icons.menu,
+        //     color: Colors.white,
+        //     size: 30,
+        //   ),
+        // ),
         actions: [
           GestureDetector(
             onTap: () {
@@ -118,18 +163,20 @@ class ChatRoomsTile extends StatelessWidget {
               decoration: BoxDecoration(
                   color: CustomTheme.colorAccent,
                   borderRadius: BorderRadius.circular(30)),
-              child: Text(userName.substring(0, 1),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'OverpassRegular',
-                      fontWeight: FontWeight.w300)),
+              child: Center(
+                child: Text(userName.substring(0, 1).capitalize(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        // fontFamily: 'OverpassRegular',
+                        fontWeight: FontWeight.bold)),
+              ),
             ),
             SizedBox(
               width: 12,
             ),
-            Text(userName,
+            Text(userName.capitalize(),
                 textAlign: TextAlign.start,
                 style: TextStyle(
                     color: Colors.white,
