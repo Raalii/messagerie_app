@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:messagerie_app/models/user.dart';
 
-class AuthMethods {
+class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // ignore: unused_element
