@@ -1,5 +1,7 @@
 // import 'dart:html';
 // import 'dart:io';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:messagerie_app/helper/constants.dart';
 import 'package:messagerie_app/services/database.dart';
 import 'package:messagerie_app/widgets/widget.dart';
@@ -17,7 +19,7 @@ class Chat extends StatefulWidget {
 
 class _ChatState extends State<Chat> {
   Stream<QuerySnapshot>? chats;
-  TextEditingController messageEditingController = new TextEditingController();
+  TextEditingController messageEditingController = TextEditingController();
 
   Widget chatMessages() {
     return StreamBuilder<QuerySnapshot>(
@@ -74,10 +76,16 @@ class _ChatState extends State<Chat> {
             chatMessages(),
             Container(
               alignment: Alignment.bottomCenter,
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery.of(context).size.width - 20,
+              margin: EdgeInsets.only(left: 10),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                color: Color(0x54FFFFFF),
+                margin: EdgeInsets.only(bottom: 10),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.9),
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+                // color: Colors.white10,
                 child: Row(
                   children: [
                     Expanded(
@@ -99,24 +107,11 @@ class _ChatState extends State<Chat> {
                       onTap: () {
                         addMessage();
                       },
-                      child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [
-                                    const Color(0x36FFFFFF),
-                                    const Color(0x0FFFFFFF)
-                                  ],
-                                  begin: FractionalOffset.topLeft,
-                                  end: FractionalOffset.bottomRight),
-                              borderRadius: BorderRadius.circular(40)),
-                          padding: EdgeInsets.all(12),
-                          child: Image.asset(
-                            "assets/images/send.png",
-                            height: 25,
-                            width: 25,
-                          )),
+                      child: Image.asset(
+                        "assets/images/send.png",
+                        height: 35,
+                        width: 35,
+                      ),
                     ),
                   ],
                 ),

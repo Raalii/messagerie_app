@@ -2,20 +2,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:messagerie_app/helper/authenticate.dart';
 import 'package:messagerie_app/helper/constants.dart';
 import 'package:messagerie_app/helper/helper_functions.dart';
+import 'package:messagerie_app/helper/constants.dart';
 import 'package:messagerie_app/helper/theme.dart';
 import 'package:messagerie_app/services/auth.dart';
 import 'package:messagerie_app/services/database.dart';
 import 'package:messagerie_app/views/chat.dart';
 import 'package:messagerie_app/views/search.dart';
 import 'package:flutter/material.dart';
+import 'package:messagerie_app/views/settings.dart';
 
 extension StringExtension on String {
   String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
   }
 }
 
 class ChatRoom extends StatefulWidget {
+  const ChatRoom({Key? key}) : super(key: key);
+
   @override
   _ChatRoomState createState() => _ChatRoomState();
 }
@@ -64,34 +68,39 @@ class _ChatRoomState extends State<ChatRoom> {
 
   @override
   Widget build(BuildContext context) {
+    // String currentName = Constants.myName;
     return Scaffold(
       drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
+        backgroundColor: Color(0xff1F1F1F),
         child: ListView(
-          // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
+            DrawerHeader(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text('Drawer Header'),
+              child: Text(
+                Constants.myName.capitalize(),
+                style: const TextStyle(fontSize: 20),
+              ),
             ),
             ListTile(
-              title: const Text('Item 1'),
+              // tileColor: Color(0xff1F1F1F),
+              textColor: Colors.white,
+              // iconColor: Colors.blue,
+              title: const Text('Mon profil'),
+              // tileColor: Colors.black87,
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SettingsPage()));
               },
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
+              // focusColor: Colors.blue,
+              // hoverColor: Colors.blue,
+              // selectedTileColor: Colors.blue,
+              // tileColor: Colors.blue,
+              // selectedColor: Colors.blue,
             ),
           ],
         ),

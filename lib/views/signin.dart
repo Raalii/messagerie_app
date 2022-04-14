@@ -37,9 +37,7 @@ class _SignInState extends State<SignIn> {
           .signInWithEmailAndPassword(emailEditingController.text.trim(),
               passwordEditingController.text)
           .then((result) async {
-        print("CA MARCHE SA GRAND MERE LA\n");
         if (result != null) {
-          print("CA MARCHE SA GRAND MERE LA ENCORE PLUS\n");
           QuerySnapshot userInfoSnapshot =
               await DatabaseMethods().getUserInfo(emailEditingController.text);
 

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:messagerie_app/helper/constants.dart';
+import 'package:messagerie_app/helper/helper_functions.dart';
 // import 'package:messagerie_app/models/user.dart';
 import 'package:messagerie_app/services/database.dart';
 import 'package:messagerie_app/views/chat.dart';
@@ -22,7 +23,9 @@ class _SearchState extends State<Search> {
   bool haveUserSearched = false;
 
   initiateSearch() async {
-    if (searchEditingController.text.isNotEmpty) {
+    // Constants.myName = await HelperFunctions.getUserNameSharedPreference();
+    if (searchEditingController.text.isNotEmpty &&
+        searchEditingController.text != Constants.myName) {
       setState(() {
         isLoading = true;
       });

@@ -1,3 +1,7 @@
+import 'dart:typed_data';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HelperFunctions {
@@ -11,6 +15,20 @@ class HelperFunctions {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return await preferences.setBool(
         sharedPreferenceUserLoggedInKey, isUserLoggedIn);
+  }
+
+  static String getUidOfCurrentUser() {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+    final uid = user!.uid;
+    return uid;
+  }
+
+  static Future<String> storageUserImage(String uid, Uint8List datas) async {
+    TaskSnapshot snap =
+        await FirebaseStorage.instance.ref("images/$uid").putData(datas);
+    String chemin = await snap.ref.getDownloadURL();
+    return chemin;
   }
 
   static Future<bool> saveUserNameSharedPreference(String userName) async {
