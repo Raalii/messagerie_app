@@ -34,21 +34,31 @@ class _SettingsPageState extends State<SettingsPage> {
           // }
         },
       ),
-      body: ImageUpload(),
+      body: ChangeImageOfProfile(),
     );
   }
 }
 
-class ImageUpload extends StatefulWidget {
+class ChangeImageOfProfile extends StatefulWidget {
   @override
-  _ImageUploadState createState() => _ImageUploadState();
+  _ChangeImageOfProfileState createState() => _ChangeImageOfProfileState();
 }
 
-class _ImageUploadState extends State<ImageUpload> {
+class _ChangeImageOfProfileState extends State<ChangeImageOfProfile> {
   Uint8List? bytesData;
   String? chemeinUrl;
   String? nameFile;
   String? imageUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    HelperFunctions.getImageUriOfUserProfile().then((value) {
+      setState(() {
+        imageUrl = value;
+      });
+    });
+  }
 
   picker() async {
     FilePickerResult? filePickerResult = await FilePicker.platform.pickFiles(
@@ -131,26 +141,27 @@ class _ImageUploadState extends State<ImageUpload> {
       body: Column(
         children: [
           Container(
-              margin: EdgeInsets.all(15),
-              padding: EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(15),
-                ),
-                border: Border.all(color: Colors.white),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    offset: Offset(2, 2),
-                    spreadRadius: 2,
-                    blurRadius: 1,
-                  ),
-                ],
+            margin: EdgeInsets.all(15),
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(
+                Radius.circular(15),
               ),
-              child: (imageUrl != null)
-                  ? Image.network(imageUrl!)
-                  : Image.network('https://i.imgur.com/sUFH1Aq.png')),
+              border: Border.all(color: Colors.white),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  offset: Offset(2, 2),
+                  spreadRadius: 2,
+                  blurRadius: 1,
+                ),
+              ],
+            ),
+            child: (imageUrl != null)
+                ? Image.network(imageUrl!)
+                : Image.network('https://i.imgur.com/sUFH1Aq.png'),
+          ),
           SizedBox(
             height: 20.0,
           ),

@@ -31,6 +31,14 @@ class HelperFunctions {
     return chemin;
   }
 
+  static Future<String?> getImageUriOfUserProfile() async {
+    String uid = getUidOfCurrentUser();
+    String downloadURL =
+        await FirebaseStorage.instance.ref("images/$uid").getDownloadURL();
+
+    return downloadURL;
+  }
+
   static Future<bool> saveUserNameSharedPreference(String userName) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return await preferences.setString(sharedPreferenceUserNameKey, userName);
