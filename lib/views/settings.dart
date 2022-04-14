@@ -40,6 +40,8 @@ class _SettingsPageState extends State<SettingsPage> {
 }
 
 class ChangeImageOfProfile extends StatefulWidget {
+  const ChangeImageOfProfile({Key? key}) : super(key: key);
+
   @override
   _ChangeImageOfProfileState createState() => _ChangeImageOfProfileState();
 }
@@ -76,6 +78,7 @@ class _ChangeImageOfProfileState extends State<ChangeImageOfProfile> {
     }
   }
 
+  // ignore: non_constant_identifier_names
   Showdialog() {
     showDialog(
         barrierDismissible: false,
@@ -167,9 +170,6 @@ class _ChangeImageOfProfileState extends State<ChangeImageOfProfile> {
           ),
           Material(
             color: Colors.blue,
-            // color: Colors.blue,
-            // padding: const EdgeInsets.all(10),
-
             child: InkWell(
               child: Container(
                 padding: EdgeInsets.all(10),
