@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -41,22 +41,13 @@ class _MyAppState extends State<MyApp> {
       title: 'FlutterChat',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Color(0xff145C9E),
-        scaffoldBackgroundColor: Color(0xff1F1F1F),
+        primaryColor: const Color(0xff145C9E),
+        scaffoldBackgroundColor: const Color(0xff1F1F1F),
         // accentColor: Color(0xff007EF4),
         fontFamily: "OverpassRegular",
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: userIsLoggedIn != null
-          ? userIsLoggedIn
-              ? ChatRoom()
-              : const Authenticate()
-          : Container(
-              padding: null,
-              child: Center(
-                child: Authenticate(),
-              ),
-            ),
+      home: userIsLoggedIn ? const ChatRoom() : const Authenticate(),
     );
   }
 }

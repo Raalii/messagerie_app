@@ -6,7 +6,7 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // ignore: unused_element
-  UserModel? _userFromFirebaseUser(User user) {
+  UserModel? _userFromFirebaseUser(User? user) {
     return user != null ? UserModel(userId: user.uid) : null;
   }
 

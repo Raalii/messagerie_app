@@ -1,13 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
-// import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
 import 'package:messagerie_app/helper/helper_functions.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -23,7 +19,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       // appBar: AppBar(),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.search),
+        child: const Icon(Icons.search),
         onPressed: () async {
           // FilePickerResult? result = await FilePicker.platform.pickFiles();
 
@@ -34,7 +30,7 @@ class _SettingsPageState extends State<SettingsPage> {
           // }
         },
       ),
-      body: ChangeImageOfProfile(),
+      body: const ChangeImageOfProfile(),
     );
   }
 }
@@ -86,7 +82,7 @@ class _ChangeImageOfProfileState extends State<ChangeImageOfProfile> {
         builder: (context) {
           if (Platform.isIOS) {
             return CupertinoAlertDialog(
-              title: Text(
+              title: const Text(
                   "Souhaiter enregistrer cette image comme photo de profil?"),
               content: Image.memory(bytesData!),
               actions: [
@@ -94,20 +90,15 @@ class _ChangeImageOfProfileState extends State<ChangeImageOfProfile> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text("Annuler")),
-                ElevatedButton(onPressed: () {}, child: Text("Ok")),
+                    child: const Text("Annuler")),
+                ElevatedButton(onPressed: () {}, child: const Text("Ok")),
               ],
             );
           } else {
             return AlertDialog(
-              title: Text("Souhaiter enregistrer cette image ?"),
+              title: const Text("Souhaiter enregistrer cette image ?"),
               content: Image.memory(bytesData!),
               actions: [
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text("Annuler")),
                 ElevatedButton(
                     onPressed: () {
                       HelperFunctions.storageUserImage(
@@ -120,7 +111,20 @@ class _ChangeImageOfProfileState extends State<ChangeImageOfProfile> {
 
                       Navigator.pop(context);
                     },
-                    child: Text("Ok")),
+                    child: const Text("Annuler")),
+                ElevatedButton(
+                    onPressed: () {
+                      HelperFunctions.storageUserImage(
+                              HelperFunctions.getUidOfCurrentUser(), bytesData!)
+                          .then((value) {
+                        setState(() {
+                          imageUrl = value;
+                        });
+                      });
+
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Ok")),
               ],
             );
           }
@@ -133,7 +137,7 @@ class _ChangeImageOfProfileState extends State<ChangeImageOfProfile> {
     return Scaffold(
       // backgroundColor: Colors.blue,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Mon profil',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
         ),
@@ -144,15 +148,15 @@ class _ChangeImageOfProfileState extends State<ChangeImageOfProfile> {
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.all(15),
-            padding: EdgeInsets.all(15),
+            margin: const EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(15),
               ),
               border: Border.all(color: Colors.white),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.black12,
                   offset: Offset(2, 2),
@@ -165,18 +169,18 @@ class _ChangeImageOfProfileState extends State<ChangeImageOfProfile> {
                 ? Image.network(imageUrl!)
                 : Image.network('https://i.imgur.com/sUFH1Aq.png'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
           Material(
             color: Colors.blue,
             child: InkWell(
               child: Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(10),
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
-                child: Text("Changer sa photo de profil",
+                child: const Text("Changer sa photo de profil",
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -185,7 +189,7 @@ class _ChangeImageOfProfileState extends State<ChangeImageOfProfile> {
               onTap: () {
                 picker();
               },
-              splashColor: Color.fromARGB(255, 0, 90, 163),
+              splashColor: const Color.fromARGB(255, 0, 90, 163),
               highlightColor: Colors.blue,
             ),
           ),

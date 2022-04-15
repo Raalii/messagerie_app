@@ -30,9 +30,7 @@ class DatabaseMethods {
         .collection("users")
         .where("userName", isEqualTo: searchField)
         .get()
-        .catchError((e) {
-      print("ERREUR DE MERDE : ");
-    });
+        .catchError((e) {});
   }
 
   Future addChatRoom(chatRoom, chatRoomId) async {
@@ -41,7 +39,7 @@ class DatabaseMethods {
         .doc(chatRoomId)
         .set(chatRoom)
         .catchError((e) {
-      print(e);
+      // print(e);
     });
   }
 
@@ -61,7 +59,7 @@ class DatabaseMethods {
         .collection("chats")
         .add(chatMessageData)
         .catchError((e) {
-      print(e.toString());
+      // print(e.toString());
     });
   }
 

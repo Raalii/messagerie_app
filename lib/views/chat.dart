@@ -2,16 +2,17 @@
 // import 'dart:io';
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
 import 'package:messagerie_app/helper/constants.dart';
 import 'package:messagerie_app/services/database.dart';
 import 'package:messagerie_app/widgets/widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
 class Chat extends StatefulWidget {
   final String chatRoomId;
 
-  Chat({required this.chatRoomId});
+  const Chat({Key? key, required this.chatRoomId}) : super(key: key);
 
   @override
   _ChatState createState() => _ChatState();
@@ -70,55 +71,53 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarMain(context),
-      body: Container(
-        child: Stack(
-          children: [
-            chatMessages(),
-            Container(
-              alignment: Alignment.bottomCenter,
-              width: MediaQuery.of(context).size.width - 20,
-              margin: EdgeInsets.only(left: 10),
-              child: Container(
-                margin: EdgeInsets.only(bottom: 10),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.9),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
-                // color: Colors.white10,
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: TextField(
-                      controller: messageEditingController,
-                      style: simpleTextStyle(),
-                      decoration: InputDecoration(
-                          hintText: "Message ...",
-                          hintStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                          border: InputBorder.none),
-                    )),
-                    SizedBox(
-                      width: 16,
+      body: Stack(
+        children: [
+          chatMessages(),
+          Container(
+            alignment: Alignment.bottomCenter,
+            width: MediaQuery.of(context).size.width - 20,
+            margin: EdgeInsets.only(left: 10),
+            child: Container(
+              margin: EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.9),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+              // color: Colors.white10,
+              child: Row(
+                children: [
+                  Expanded(
+                      child: TextField(
+                    controller: messageEditingController,
+                    style: simpleTextStyle(),
+                    decoration: InputDecoration(
+                        hintText: "Message ...",
+                        hintStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                        border: InputBorder.none),
+                  )),
+                  SizedBox(
+                    width: 16,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      addMessage();
+                    },
+                    child: Image.asset(
+                      "assets/images/send.png",
+                      height: 35,
+                      width: 35,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        addMessage();
-                      },
-                      child: Image.asset(
-                        "assets/images/send.png",
-                        height: 35,
-                        width: 35,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -128,7 +127,11 @@ class MessageTile extends StatelessWidget {
   final String message;
   final bool sendByMe;
 
-  MessageTile({required this.message, required this.sendByMe});
+  const MessageTile({
+    Key? key,
+    required this.message,
+    required this.sendByMe,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

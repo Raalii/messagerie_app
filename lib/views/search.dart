@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:messagerie_app/helper/constants.dart';
-import 'package:messagerie_app/helper/helper_functions.dart';
+// import 'package:messagerie_app/helper/helper_functions.dart';
 // import 'package:messagerie_app/models/user.dart';
 import 'package:messagerie_app/services/database.dart';
 import 'package:messagerie_app/views/chat.dart';
@@ -10,6 +10,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Search extends StatefulWidget {
+  const Search({Key? key}) : super(key: key);
+
   @override
   _SearchState createState() => _SearchState();
 }
@@ -33,7 +35,7 @@ class _SearchState extends State<Search> {
           .searchByName(searchEditingController.text.trim())
           .then((snapshot) {
         searchResultSnapshot = snapshot;
-        print("$searchResultSnapshot");
+        // print("$searchResultSnapshot");
         setState(() {
           isLoading = false;
           haveUserSearched = true;

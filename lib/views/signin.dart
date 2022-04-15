@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
 import 'package:messagerie_app/helper/helper_functions.dart';
 import 'package:messagerie_app/helper/theme.dart';
 import 'package:messagerie_app/services/auth.dart';
@@ -5,13 +8,14 @@ import 'package:messagerie_app/services/database.dart';
 import 'package:messagerie_app/views/chatrooms.dart';
 import 'package:messagerie_app/views/forgetpassword.dart';
 import 'package:messagerie_app/widgets/widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
 
-  SignIn(this.toggleView);
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+  const SignIn(
+    this.toggleView,
+  );
 
   @override
   _SignInState createState() => _SignInState();
@@ -51,8 +55,8 @@ class _SignInState extends State<SignIn> {
                   ? userInfoSnapshot.docs[0]['userEmail']
                   : '');
 
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => ChatRoom()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const ChatRoom()));
         } else {
           setState(() {
             isLoading = false;
@@ -118,7 +122,8 @@ class _SignInState extends State<SignIn> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ForgotPassword()));
+                                  builder: (context) =>
+                                      const ForgotPassword()));
                         },
                         child: Container(
                             padding: const EdgeInsets.symmetric(

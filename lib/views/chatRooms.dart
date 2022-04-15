@@ -1,8 +1,10 @@
+// ignore_for_file: file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:messagerie_app/helper/authenticate.dart';
 import 'package:messagerie_app/helper/constants.dart';
 import 'package:messagerie_app/helper/helper_functions.dart';
-import 'package:messagerie_app/helper/constants.dart';
 import 'package:messagerie_app/helper/theme.dart';
 import 'package:messagerie_app/services/auth.dart';
 import 'package:messagerie_app/services/database.dart';
@@ -60,8 +62,8 @@ class _ChatRoomState extends State<ChatRoom> {
     DatabaseMethods().getUserChats(Constants.myName).then((snapshots) {
       setState(() {
         chatRooms = snapshots;
-        print(
-            "we got the data + ${chatRooms.toString()} this is name  ${Constants.myName}");
+        // print(
+        //     "we got the data + ${chatRooms.toString()} this is name  ${Constants.myName}");
       });
     });
   }
@@ -71,7 +73,7 @@ class _ChatRoomState extends State<ChatRoom> {
     // String currentName = Constants.myName;
     return Scaffold(
       drawer: Drawer(
-        backgroundColor: Color(0xff1F1F1F),
+        backgroundColor: const Color(0xff1F1F1F),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -121,12 +123,14 @@ class _ChatRoomState extends State<ChatRoom> {
           GestureDetector(
             onTap: () {
               AuthService().signOut();
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => Authenticate()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Authenticate()));
             },
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Icon(Icons.exit_to_app)),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: const Icon(Icons.exit_to_app)),
           )
         ],
       ),
@@ -134,10 +138,10 @@ class _ChatRoomState extends State<ChatRoom> {
         child: chatRoomsList(),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.search),
+        child: const Icon(Icons.search),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Search()));
+              context, MaterialPageRoute(builder: (context) => const Search()));
         },
       ),
     );
@@ -148,7 +152,11 @@ class ChatRoomsTile extends StatelessWidget {
   final String userName;
   final String chatRoomId;
 
-  ChatRoomsTile({required this.userName, required this.chatRoomId});
+  const ChatRoomsTile({
+    Key? key,
+    required this.userName,
+    required this.chatRoomId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -163,7 +171,7 @@ class ChatRoomsTile extends StatelessWidget {
       },
       child: Container(
         color: Colors.black26,
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         child: Row(
           children: [
             Container(
@@ -175,19 +183,19 @@ class ChatRoomsTile extends StatelessWidget {
               child: Center(
                 child: Text(userName.substring(0, 1).capitalize(),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         // fontFamily: 'OverpassRegular',
                         fontWeight: FontWeight.bold)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 12,
             ),
             Text(userName.capitalize(),
                 textAlign: TextAlign.start,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                     fontFamily: 'OverpassRegular',

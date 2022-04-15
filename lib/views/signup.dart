@@ -1,14 +1,18 @@
+import 'package:flutter/material.dart';
+
 import 'package:messagerie_app/helper/helper_functions.dart';
 import 'package:messagerie_app/helper/theme.dart';
 import 'package:messagerie_app/services/auth.dart';
 import 'package:messagerie_app/services/database.dart';
 import 'package:messagerie_app/views/chatrooms.dart';
 import 'package:messagerie_app/widgets/widget.dart';
-import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
   final Function toggleView;
-  SignUp(this.toggleView);
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+  SignUp(
+    this.toggleView,
+  );
 
   @override
   _SignUpState createState() => _SignUpState();
@@ -49,8 +53,8 @@ class _SignUpState extends State<SignUp> {
           HelperFunctions.saveUserEmailSharedPreference(
               emailEditingController.text);
 
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => ChatRoom()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const ChatRoom()));
         }
       });
     }
@@ -61,16 +65,14 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       appBar: appBarMain(context),
       body: isLoading
-          ? Container(
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
+          ? const Center(
+              child: CircularProgressIndicator(),
             )
           : Container(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   Form(
                     key: formKey,
                     child: Column(
@@ -111,7 +113,7 @@ class _SignUpState extends State<SignUp> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   GestureDetector(
@@ -119,14 +121,11 @@ class _SignUpState extends State<SignUp> {
                       singUp();
                     },
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          gradient: LinearGradient(
-                            colors: [
-                              const Color(0xff007EF4),
-                              const Color(0xff2A75BC)
-                            ],
+                          gradient: const LinearGradient(
+                            colors: [Color(0xff007EF4), Color(0xff2A75BC)],
                           )),
                       width: MediaQuery.of(context).size.width,
                       child: Text(
@@ -136,11 +135,11 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.white),
@@ -152,7 +151,7 @@ class _SignUpState extends State<SignUp> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Row(
@@ -166,7 +165,7 @@ class _SignUpState extends State<SignUp> {
                         onTap: () {
                           widget.toggleView();
                         },
-                        child: Text(
+                        child: const Text(
                           "SignIn now",
                           style: TextStyle(
                               color: Colors.white,
@@ -176,13 +175,12 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   )
                 ],
               ),
             ),
     );
-    ;
   }
 }
