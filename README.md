@@ -1,11 +1,10 @@
 # WhatsUp - Application de messagerie
 
-WhatsUp est la nouvelle application de messagerie du moment !
-Vous pouvez parler avec vos amis, en quelque clic et communiquer sans soucis !
+WhatsUp is the new chat application of the moment ! 
+Communicate with your friends, share funny moments...
 
-(IMAGE de présentation)
-
-
+[enter link description here](./assets/images/ChatPage.png)
+ 
 ## Get started
 
 You have, in  the root project :
@@ -17,7 +16,8 @@ If you have android studio or Xcode, the depedencies will be installed automatic
 
 ## With WhatsUp, what we can do ?
 
-Communicate with their friends, consult their profile... WhatsUp is the application of 
+Communicate with their friends, consult their profile... WhatsUp is the application of the moment
+[enter link description here](./assets/images/ChatList.png)
 
 ## How it work ?
 
@@ -27,6 +27,8 @@ Then write your message then click on the icon to the right of the message bar t
 ## Log in
  
 To communicate with your contacts you will need to create a profile and log in. To create your profile, you will need to click on your profile and enter an email address and a password. You can also add a profile photo that you can change later.
+
+[enter link description here](./assets/images/ProfilePage.png)
 
 
 

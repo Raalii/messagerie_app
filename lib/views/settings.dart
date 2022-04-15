@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:messagerie_app/helper/constants.dart';
 import 'package:messagerie_app/helper/helper_functions.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -16,21 +17,8 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.search),
-        onPressed: () async {
-          // FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-          // if (result != null) {
-          //   final file = result.files.first;
-          // } else {
-          //   return;
-          // }
-        },
-      ),
-      body: const ChangeImageOfProfile(),
+    return const Scaffold(
+      body: ChangeImageOfProfile(),
     );
   }
 }
@@ -193,6 +181,28 @@ class _ChangeImageOfProfileState extends State<ChangeImageOfProfile> {
               highlightColor: Colors.blue,
             ),
           ),
+          Container(
+            margin: const EdgeInsets.only(top: 20),
+            child: Text(
+              "Nom : " + Constants.myName,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            child: Text(
+              "Adresse email : " + Constants.email,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
         ],
       ),
     );

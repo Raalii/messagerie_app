@@ -82,7 +82,7 @@ class _SignUpState extends State<SignUp> {
                           controller: usernameEditingController,
                           validator: (val) {
                             return val!.isEmpty || val.length < 3
-                                ? "Enter Username 3+ characters"
+                                ? "Votre pseudo doit contenir plus de 3 caractères"
                                 : null;
                           },
                           decoration: textFieldInputDecoration("username"),
@@ -95,7 +95,7 @@ class _SignUpState extends State<SignUp> {
                                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                     .hasMatch(val!)
                                 ? null
-                                : "Enter correct email";
+                                : "Veuillez entrer une adresse email correcte";
                           },
                           decoration: textFieldInputDecoration("email"),
                         ),
@@ -106,7 +106,7 @@ class _SignUpState extends State<SignUp> {
                           controller: passwordEditingController,
                           validator: (val) {
                             return val!.length < 6
-                                ? "Enter Password 6+ characters"
+                                ? "Votre mot de passe doit contenir au moins 7 caractères"
                                 : null;
                           },
                         ),
@@ -129,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                           )),
                       width: MediaQuery.of(context).size.width,
                       child: Text(
-                        "Sign Up",
+                        "S'inscrire",
                         style: mediumTextStyle(),
                         textAlign: TextAlign.center,
                       ),
@@ -145,7 +145,7 @@ class _SignUpState extends State<SignUp> {
                         color: Colors.white),
                     width: MediaQuery.of(context).size.width,
                     child: Text(
-                      "Sign Up with Google",
+                      "S'inscrire avec Google",
                       style:
                           TextStyle(fontSize: 17, color: CustomTheme.textColor),
                       textAlign: TextAlign.center,
@@ -158,7 +158,7 @@ class _SignUpState extends State<SignUp> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Already have an account? ",
+                        "Vous avez déjà un compte? ",
                         style: simpleTextStyle(),
                       ),
                       GestureDetector(
@@ -166,7 +166,7 @@ class _SignUpState extends State<SignUp> {
                           widget.toggleView();
                         },
                         child: const Text(
-                          "SignIn now",
+                          "Se connecter",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,

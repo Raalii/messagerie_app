@@ -31,8 +31,9 @@ class HelperFunctions {
     return chemin;
   }
 
-  static Future<String?> getImageUriOfUserProfile() async {
-    String uid = getUidOfCurrentUser();
+  static Future<String?> getImageUriOfUserProfile(
+      {String uidSearched = ""}) async {
+    String uid = uidSearched.isEmpty ? getUidOfCurrentUser() : uidSearched;
     String downloadURL =
         await FirebaseStorage.instance.ref("images/$uid").getDownloadURL();
 

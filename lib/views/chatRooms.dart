@@ -98,11 +98,6 @@ class _ChatRoomState extends State<ChatRoom> {
                     MaterialPageRoute(
                         builder: (context) => const SettingsPage()));
               },
-              // focusColor: Colors.blue,
-              // hoverColor: Colors.blue,
-              // selectedTileColor: Colors.blue,
-              // tileColor: Colors.blue,
-              // selectedColor: Colors.blue,
             ),
           ],
         ),
@@ -111,14 +106,6 @@ class _ChatRoomState extends State<ChatRoom> {
         title: const Text("Mes messages"),
         elevation: 0.0,
         centerTitle: false,
-        // leading: IconButton(
-        //   onPressed: () {},
-        //   icon: const Icon(
-        //     Icons.menu,
-        //     color: Colors.white,
-        //     size: 30,
-        //   ),
-        // ),
         actions: [
           GestureDetector(
             onTap: () {

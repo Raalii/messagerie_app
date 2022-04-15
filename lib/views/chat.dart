@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:messagerie_app/helper/constants.dart';
 import 'package:messagerie_app/services/database.dart';
 import 'package:messagerie_app/widgets/widget.dart';
+import 'package:messagerie_app/views/chatRooms.dart';
 
 class Chat extends StatefulWidget {
   final String chatRoomId;
@@ -70,7 +71,11 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarMain(context),
+      appBar: AppBar(
+        title: Text(widget.chatRoomId.split("_")[0] != Constants.myName
+            ? widget.chatRoomId.split("_")[0].capitalize()
+            : widget.chatRoomId.split("_")[1].capitalize()),
+      ),
       body: Stack(
         children: [
           chatMessages(),

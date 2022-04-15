@@ -8,6 +8,7 @@ import 'package:messagerie_app/services/database.dart';
 import 'package:messagerie_app/views/chatrooms.dart';
 import 'package:messagerie_app/views/forgetpassword.dart';
 import 'package:messagerie_app/widgets/widget.dart';
+import 'package:messagerie_app/helper/constants.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -55,6 +56,13 @@ class _SignInState extends State<SignIn> {
                   ? userInfoSnapshot.docs[0]['userEmail']
                   : '');
 
+          Constants.email = userInfoSnapshot.docs.isNotEmpty
+              ? userInfoSnapshot.docs[0]['userEmail']
+              : '';
+          Constants.myName = userInfoSnapshot.docs.isNotEmpty
+              ? userInfoSnapshot.docs[0]['userName']
+              : '';
+
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const ChatRoom()));
         } else {
@@ -91,7 +99,7 @@ class _SignInState extends State<SignIn> {
                                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                     .hasMatch(val!)
                                 ? null
-                                : "Please Enter Correct Email";
+                                : "Veuillez entrer une adresse email valide";
                           },
                           controller: emailEditingController,
                           style: simpleTextStyle(),
@@ -102,7 +110,7 @@ class _SignInState extends State<SignIn> {
                           validator: (val) {
                             return val!.length > 6
                                 ? null
-                                : "Enter Password 6+ characters";
+                                : "Votre mot de passe doit contenir plus de 6 caractères";
                           },
                           style: simpleTextStyle(),
                           controller: passwordEditingController,
@@ -129,7 +137,7 @@ class _SignInState extends State<SignIn> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 8),
                             child: Text(
-                              "Forgot Password?",
+                              "Mot de passe oublié ?",
                               style: simpleTextStyle(),
                             )),
                       )
@@ -151,7 +159,7 @@ class _SignInState extends State<SignIn> {
                           )),
                       width: MediaQuery.of(context).size.width,
                       child: Text(
-                        "Sign In",
+                        "Se connecter",
                         style: mediumTextStyle(),
                         textAlign: TextAlign.center,
                       ),
@@ -167,7 +175,7 @@ class _SignInState extends State<SignIn> {
                         color: Colors.white),
                     width: MediaQuery.of(context).size.width,
                     child: Text(
-                      "Sign In with Google",
+                      "Se connecter avec google",
                       style:
                           TextStyle(fontSize: 17, color: CustomTheme.textColor),
                       textAlign: TextAlign.center,
@@ -180,7 +188,7 @@ class _SignInState extends State<SignIn> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have account? ",
+                        "Vous n'avez pas de compte ? ",
                         style: simpleTextStyle(),
                       ),
                       GestureDetector(
@@ -188,7 +196,7 @@ class _SignInState extends State<SignIn> {
                           widget.toggleView();
                         },
                         child: const Text(
-                          "Register now",
+                          "S'inscrire",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,

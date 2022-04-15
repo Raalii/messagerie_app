@@ -17,7 +17,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       body: const Center(
         child: Text(
           "Mot de passe sera jamais récupéré !",
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+          ),
         ),
       ),
       // floatingActionButton: ,
